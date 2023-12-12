@@ -19,11 +19,16 @@ local set_of_key = nil
 local autoTap = "OFF"
 
 ---This is the button used to turn on the fast loot
-local fastloot_key = nil
-mouseX1 = 10000 -- Mouse is at (10000, 9000)
-mouseY1 = 9000
-mouseX2 = 50000 -- Mouse is at (50000, 9000)
-mouseY2 = 20000
+local fastloot_key = 5
+local mouseX1 = 10000 -- Mouse is at (10000, 9000)
+local mouseY1 = 9000
+local mouseX2 = 22000 -- Mouse is at (50000, 9000)
+local mouseY2 = 9000
+---Change weapon 1 to weapon 2
+local mouseXWp1 = 45000
+local mouseYWp1 = 7000
+local mouseXWp2 = 45000
+local mouseYWp2 = 20000
 
 --[[MASTER SCRIPT ENABLE/DISABLE SETTING]]
 --
@@ -47,7 +52,7 @@ function applyRecoil(recoilAmount, recoilInterval)
     Sleep(recoilDelay)
     repeat
         MoveMouseRelative(0, recoilAmount)
-        Sleep(recoilInterval)
+        Sleep(recoilInterval)   
     until not IsMouseButtonPressed(1) or not IsMouseButtonPressed(3)
 end
 
@@ -70,7 +75,8 @@ end
 
 -- Fast Loot
 function fastLoot()
-    for i = 1, 3 do
+    PressAndReleaseKey("Tab")
+    for i = 1, 5 do
         MoveMouseTo(mouseX1, mouseY1 + 6000)
         PressMouseButton(1)
         MoveMouseTo(mouseX2, mouseY2)
@@ -92,6 +98,12 @@ function fastLoot()
         ReleaseMouseButton(1)
         Sleep(25)
     end
+    MoveMouseTo(mouseXWp1, mouseYWp1)
+    PressMouseButton(1)
+    MoveMouseTo(mouseXWp2, mouseYWp2)
+    Sleep(20)
+    ReleaseMouseButton(1)
+    Sleep(25)
     PressAndReleaseKey("Tab")
 end
 
